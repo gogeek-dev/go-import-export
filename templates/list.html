@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Import Export </title>
+    <!-- Bootstrap CSS -->
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+	.hand {cursor: pointer;}
+	</style>
+  </head>
+
+  <body>
+  	
+  	<div class="page-wrapper">
+		<div class="maximus">
+			<div class="title flex">
+				<h2> Import and export of data using excel</h2>
+				<div class="flex ie-btns">
+					<a href="/importview" class="flex ripple hand"> <img src="assets/img/import.svg"> Import </a>
+					<button class="flex ripple hand" data-toggle="modal" data-target="#exampleModalCenter"> <img src="assets/img/export.svg"> Export </button>
+				</div>
+			</div>
+			<!-- title -->
+			<div class="table-responsive">
+				<table class="table table-list">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th>Phone Number</th>
+							<th>Email ID</th>
+							<th>Desgnation</th>
+							<th>Country</th>
+							<th>Date of Birth</th>
+							<th>Date of Joining</th>
+						</tr>
+					</thead>
+					<tbody>
+					{{ range . }}
+						<tr>
+							<td>{{ .Num }}</td>
+							<td>{{ .Name }}</td>
+							<td>{{ .Phonenumber }}</td>
+							<td>{{ .Emailid }}</td>
+							<td>{{ .Designation }}</td>
+							<td>{{ .Country }}</td>
+							<td>{{ .Dob }}</td>
+							<td>{{ .Doj }}</td>
+						</tr>
+						{{ end }}						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade popup-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close hand" data-dismiss="modal" aria-label="Close">
+                    <img src="assets/img/close.svg">
+                </button>
+                <h4>Are you sure you want to continue?</h4>
+				<form action="/exportdata">
+                <div class="btn-action flex">
+                    <button type="submit" class="ripple hand"data-toggle="modal" data-target="#importsuccess">Proceed</button>
+                    <button type="button" class="cancel ripple hand" data-dismiss="modal">Cancel</button>
+                </div>
+				</form>
+            </div>            
+          </div>
+        </div>
+	  </div>
+	  
+	  <div class="modal fade popup-modal" id="importsuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body succesbody">
+                <button type="button" class="close hand" data-dismiss="modal" aria-label="Close">
+                    <img src="assets/img/close.svg">
+                </button>
+                <p> <img src="assets/img/file-uploaded.svg"> </p>
+                <h5>Your file has been successfully exported</h5>
+            </div>            
+          </div>
+        </div>
+      </div>
+
+  	<!-- JS -->
+  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+
+ </html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+  <defs>
+    <filter id="Rectangle_33" x="0" y="0" width="34" height="34" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.541"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_85" data-name="Group 85" transform="translate(-302 -170)">
+    <g transform="matrix(1, 0, 0, 1, 302, 170)" filter="url(#Rectangle_33)">
+      <rect id="Rectangle_33-2" data-name="Rectangle 33" width="16" height="16" rx="3" transform="translate(9 6)" fill="#fff"/>
+    </g>
+    <g id="Icon_ionic-ios-eye" data-name="Icon ionic-ios-eye" transform="translate(312.748 173.125)">
+      <path id="Path_43" data-name="Path 43" d="M6.248,7.875c-1.436,0-2.568.9-3.921,2.38a.282.282,0,0,0,0,.38c1.159,1.28,2.18,2.382,3.923,2.382,1.721,0,3.012-1.387,3.93-2.393a.28.28,0,0,0,.009-.37C9.251,9.121,7.956,7.875,6.248,7.875Zm.079,4.177a1.607,1.607,0,1,1,1.53-1.53A1.608,1.608,0,0,1,6.326,12.052Z" fill="#002e8a"/>
+      <path id="Path_44" data-name="Path 44" d="M14.644,13.8a.839.839,0,0,1,.055-.3l-.055,0a1.143,1.143,0,1,0,1.143,1.143c0-.023,0-.046,0-.07a.792.792,0,0,1-.325.07A.829.829,0,0,1,14.644,13.8Z" transform="translate(-8.393 -4.196)" fill="#002e8a"/>
+    </g>
+  </g>
+</svg>

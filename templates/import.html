@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Import Export </title>
+    <!-- Bootstrap CSS -->
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+  .hand {cursor: pointer;}
+  </style>
+
+   
+        
+  </head>
+
+  <body>
+  	<form method="post" id="form1" action="/importdata" enctype="multipart/form-data">
+  	<div class="page-wrapper">
+		<div class="import-sec">
+      <div style="text-align:right">
+            <a href="/samplefile" style="padding-right:25px" class="download-btn"> <img src="assets/img/download.svg"> </a><label style="margin-top:40px;font-weight:bold;">Sample file</label>
+            </div>
+            <h2 class="flex"> <img src="assets/img/excel.svg"> Import Excel file </h2>
+            <div class="drop-file flex" >
+                <div class="flex add-fle hand" style="display:inline">
+                    <input type="file" id="uploadfile" name="files">
+                    <img src="assets/img/clip.svg" style="margin-right: 10px;cursor: pointer;"><label style="cursor: pointer !important; ">Add Files</label>
+                </div>
+                <p>Or drop files here</p>
+            </div>
+            <div class="status"><span></span></div>
+
+            <div class="filename flex show" id="excel"> <img src="assets/img/excel.svg" class="excel">
+               <h4 id="file-upload-filename"></h4> <a onClick="window.location.reload();"> <img class="hand" src="assets/img/bin.svg"> </a> </div>
+            <input type="button" class="import-btn-lg ripple hand" id="importbtn"  data-toggle="modal" data-target="#exampleModalCenter" value="Import">
+		</div>
+    </div>
+    
+    <div class="modal fade popup-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="assets/img/close.svg">
+                </button>
+                <h4>Totally <span> <label id="count"></label> records </span> found, do you want to proceed?</h4>
+                <div class="btn-action flex">
+                    <button type="submit" class="ripple hand" data-toggle="modal" data-target="#importsuccess">Proceed</button>
+                    <button type="button" class="cancel ripple hand" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+</form>
+      <div class="modal fade popup-modal" id="importsuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body succesbody">
+                <button type="button" class="close hand" data-dismiss="modal" aria-label="Close">
+                    <img src="assets/img/close.svg">
+                </button>
+                <p> <img src="assets/img/file-uploaded.svg"> </p>
+                <h5>Your file has been successfully imported</h5>
+            </div>            
+          </div>
+        </div>
+      </div>
+
+  	<!-- JS -->
+  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+ <script tytpe="text/javascript"> 
+       var input = document.getElementById( 'uploadfile' );
+var infoArea = document.getElementById( 'file-upload-filename' );
+
+input.addEventListener( 'change', showFileName );
+
+function showFileName( event ) {
+  
+  // the change event gives us the input it occurred in 
+  var input = event.srcElement;
+  
+  // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+  var fileName = input.files[0].name;
+  
+  // use fileName however fits your app best, i.e. add it into a div
+  infoArea.textContent =  fileName;
+}
+    </script>
+
+   
+  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    
+        $(document).on('change','#uploadfile',function(){
+        var file=$(this);
+        var fid =$("#form1")[0];
+        var formData =new FormData(fid);
+        $.ajax({
+        type:"POST",
+        url:'/count',
+        cache:false,
+        data:formData,
+        contentType:false,
+        processData:false,
+        beforeSend:function(){
+
+        },
+        success:function(result)
+        {
+        console.log(result);
+        $('#count').html(result)
+        }
+        });
+        });      
+</script>
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+
+        if($('#uploadfile').val() == '' ){$('.show').hide();}  
+
+        $('#uploadfile').on('change' , function() {
+
+             if( this.value != ''){
+
+                   $('.show').show(); 
+              }
+              else{
+                   $('.show').hide(); 
+             }
+        });
+      });
+    </script>
+ </html>
